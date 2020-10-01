@@ -1,0 +1,115 @@
+@mixin fixFlex
+  flex: 0 0 auto
+@mixin relFlex
+  flex: 1 1 auto
+@mixin lineHeightAndHeight($px)
+  line-height: $px
+  height: $px
+
+$mobile_width: 420px
+$tap_width: 800px
+$pc_width: 1120px
+@mixin minCell
+  @media (min-width: #{$mobile_width})
+    @content
+
+@mixin maxCell
+  @media (max-width: #{$mobile_width - 1px})
+    @content
+
+@mixin minTap
+  @media (min-width: #{$tap_width})
+    @content
+
+@mixin maxTap
+  @media (max-width: #{$tap_width - 1px})
+    @content
+
+@mixin minPc
+  @media (min-width: #{$pc_width})
+    @content
+
+@mixin maxPc
+  @media (max-width: #{$pc_width - 1px})
+    @content
+
+@mixin square($px)
+  width: $px
+  height: $px
+
+@mixin position($pos, $arg...)
+  position: $pos
+  $len: length($arg)
+  @if $len == 4
+    top: nth($arg, 1)
+    right: nth($arg, 2)
+    bottom: nth($arg, 3)
+    left: nth($arg, 4)
+  @else if $len == 3
+    top: nth($arg, 1)
+    left: nth($arg, 2)
+    right: nth($arg, 2)
+    bottom: nth($arg, 3)
+  @else if $len == 2
+    top: nth($arg, 1)
+    left: nth($arg, 2)
+    right: nth($arg, 2)
+    bottom: nth($arg, 1)
+  @else
+    top: nth($arg, 1)
+    left: nth($arg, 1)
+    right: nth($arg, 1)
+    bottom: nth($arg, 1)
+@mixin profile_pic
+  .img
+    display: block
+    @include square(100%)
+    background-color: #0186d5
+    border-radius: 1rem
+
+@mixin ellipsis($n: null, $line_height: 1.2)
+  overflow: hidden
+  text-overflow: ellipsis
+  @if $n == null
+    white-space: nowrap
+  @else
+    line-height: $line_height
+    max-height: #{$n * $line_height}em
+    display: -webkit-box
+    -webkit-line-clamp: $n
+    -webkit-box-orient: vertical
+@mixin place_ellipsis($n: null, $line_height: 1.2)
+  overflow: hidden
+  text-overflow: ellipsis
+  @if $n == null
+    white-space: nowrap
+  @else
+    line-height: $line_height
+    height: #{$n * $line_height - 0.1}em
+    display: -webkit-box
+    -webkit-line-clamp: $n
+    -webkit-box-orient: vertical
+@mixin margin_left($size, $is_block: false)
+  margin-left: $size
+  @if $is_block == true
+    margin-block-start: $size
+  @else
+    margin-inline-start: $size
+@mixin margin_right($size, $is_block: false)
+  margin-right: $size
+  @if $is_block == true
+    margin-block-end: $size
+  @else
+    margin-inline-end: $size
+@mixin padding_left($size, $is_block: false)
+  padding-left: $size
+  @if $is_block == true
+    padding-block-start: $size
+  @else
+    padding-inline-start: $size
+@mixin padding_right($size, $is_block: false)
+  padding-right: $size
+  @if $is_block == true
+    padding-block-end: $size
+  @else
+    padding-inline-end: $size

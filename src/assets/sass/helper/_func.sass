@@ -1,0 +1,5 @@
+@function getVar($key)
+  $color: map_get($app_light_color, $key)
+  @if $color == null
+    @return #ff0000
+  @return var(--#{$key}, #{map_get($app_light_color, $key)})
