@@ -1,4 +1,4 @@
-import { throttle } from '@util/debounce';
+import throttle from 'lodash.throttle';
 
 export function throttleBound(time: number, option?: { leading?: boolean; trailing?: boolean }) {
   return function f(target: any, key: string, descriptor: TypedPropertyDescriptor<any>) {
@@ -23,7 +23,7 @@ export function throttleBound(time: number, option?: { leading?: boolean; traili
         });
         return instanceValue;
       },
-      set(v: Function) {
+      set(v: (...args: any) => void) {
         org = v;
       },
     };

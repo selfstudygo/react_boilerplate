@@ -18,7 +18,7 @@ export function autobind(target: any, key: string, descriptor: TypedPropertyDesc
       });
       return bound;
     },
-    set(v: Function) {
+    set(v: (...args: any) => void) {
       org = v;
     },
   };

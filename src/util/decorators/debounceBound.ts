@@ -1,4 +1,4 @@
-import { debounce } from '@util/debounce';
+import debounce from 'lodash.debounce';
 
 export function debounceBound(time: number, option?: { leading?: boolean; trailing?: boolean }) {
   return function f(target: any, key: string, descriptor: TypedPropertyDescriptor<any>) {
@@ -23,7 +23,7 @@ export function debounceBound(time: number, option?: { leading?: boolean; traili
         });
         return instanceValue;
       },
-      set(v: Function) {
+      set(v: (...args: any) => void) {
         org = v;
       },
     };

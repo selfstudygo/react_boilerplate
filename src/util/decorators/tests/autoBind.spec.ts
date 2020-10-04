@@ -1,18 +1,16 @@
-import { throttleBound } from '../throttleBound';
+import { autobind } from '../autobind';
 
 // Tell jest to mock this import
-jest.mock('lodash', () => ({
-  throttle: (fn) => fn,
-}));
+jest.mock('lodash.debounce', () => (fn: (...arg: any) => any) => fn);
 
-describe('throttleBound', () => {
+describe('autobind', () => {
   class A {
-    @throttleBound(200)
+    @autobind
     returnThis() {
       return this;
     }
-    @throttleBound(200)
-    callFn(fn) {
+    @autobind
+    callFn(fn: (...arg: any) => any) {
       fn();
     }
   }
@@ -49,6 +47,4 @@ describe('throttleBound', () => {
     a.callFn(spy);
     expect(spy).toHaveBeenCalledTimes(1);
   });
-
-  // throttle test is not this scope, we believe lodash
 });

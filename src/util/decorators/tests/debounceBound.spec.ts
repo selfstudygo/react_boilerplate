@@ -1,9 +1,7 @@
 import { debounceBound } from '../debounceBound';
 
 // Tell jest to mock this import
-jest.mock('lodash', () => ({
-  debounce: (fn) => fn,
-}));
+jest.mock('lodash.debounce', () => (fn: (...arg: any) => any) => fn);
 
 describe('debounceBound', () => {
   class A {
@@ -12,7 +10,7 @@ describe('debounceBound', () => {
       return this;
     }
     @debounceBound(200)
-    callFn(fn) {
+    callFn(fn: (...arg: any) => any) {
       fn();
     }
   }
