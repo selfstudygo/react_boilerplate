@@ -120,6 +120,9 @@ module.exports = {
       'error',
       {
         code: 140,
+        ignoreUrls: true,
+        ignoreRegExpLiterals: true,
+        ignoreTemplateLiterals: true,
       },
     ],
     'new-parens': 'off',
