@@ -5,19 +5,25 @@ import { publish } from 'rxjs/operators';
 
 const defaultOption = {
   // `url` is the server URL that will be used for the request
-  headers: { 'X-Requested-With': 'XMLHttpRequest' },
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  },
+  referrer: 'no-referrer',
   withCredentials: false, // default
   maxContentLength: 2000,
   maxRedirects: 5, // default
 };
 
-class FetchClient {
+export class FetchClient {
   get(url: string, options = {}) {
     return this.request('GET', url, options);
   }
 
   post(url: string, body: {}, options = {}) {
-    return this.request('POST', url, { body, ...options });
+    return this.request('POST', url, { body: JSON.stringify(body), ...options });
   }
 
   request(method: HTTP_METHOD, url: string, options: any): Observable<any> {
