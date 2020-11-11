@@ -1,10 +1,11 @@
 export type HTTP_METHOD = 'POST' | 'GET' | 'OPTIONS' | 'HEAD' | 'PATCH' | 'DELETE';
 
-interface HttpResponseInterface {
+export interface HttpResponseInterface {
   url: string;
   method: HTTP_METHOD;
   status: number;
-  response: any;
+  body: any;
+  headers: Headers;
   ok?: boolean;
 }
 
@@ -12,13 +13,15 @@ export class HttpResponse implements HttpResponseInterface {
   url: string;
   method: HTTP_METHOD;
   status: number;
-  response: any;
+  body: any;
   ok?: boolean;
+  headers: Headers;
   constructor(obj: HttpResponseInterface) {
     this.url = obj.url;
     this.method = obj.method;
     this.status = obj.status;
-    this.response = obj.response;
+    this.body = obj.body;
     this.ok = obj.ok;
+    this.headers = obj.headers;
   }
 }
