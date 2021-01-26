@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 **Contents are based on create-react-app typescript version and added essential and useful libraries**
 
 ## Node Version
-`v12.13.1`
+see .nvmrc
 
 ## Available Scripts
 

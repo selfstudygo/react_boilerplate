@@ -1,7 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 import { HTTP_METHOD, HttpResponse, HttpResponseInterface } from '@models/http/http.type';
 import 'whatwg-fetch';
-import { take } from 'rxjs/operators';
 
 export class FetchClient {
   defaultHeaders: { [key: string]: string } = {
@@ -52,7 +51,7 @@ export class FetchClient {
   private retry(api: Observable<HttpResponse>, times: number) {
     const api$ = new Subject<HttpResponse>();
     const innerRetry = (t: number) => {
-      api.pipe(take(1)).subscribe(
+      api.subscribe(
         (response: HttpResponse) => {
           api$.next(response);
           api$.complete();
